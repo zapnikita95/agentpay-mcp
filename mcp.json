@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "agentpay": {
+      "command": "npx",
+      "args": ["-y", "agentpay-mcp"],
+      "env": {
+        "AGENTPAY_API_URL": "https://YOUR_API_HOST",
+        "AGENTPAY_API_KEY": "ap_REPLACE_ME"
+      }
+    }
+  }
+}

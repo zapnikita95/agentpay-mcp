@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "agentpay": {
+      "url": "https://YOUR_API_HOST/mcp",
+      "headers": {
+        "Authorization": "Bearer ap_REPLACE_ME"
+      }
+    }
+  }
+}

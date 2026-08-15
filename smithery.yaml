@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://smithery.ai/schema.json
+name: agentpay
+title: AgentPay
+description: Controlled budget for an AI agent in allowlisted stores. No card in the model.
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: ["agentpayApiKey"]
+    properties:
+      agentpayApiUrl:
+        type: string
+        description: Public AgentPay API origin
+      agentpayApiKey:
+        type: string
+        description: Agent API key (ap_…)
+  commandFunction: |-
+    (config) => ({
+      command: "node",
+      args: ["dist/index.js"],
+      env: {
+        AGENTPAY_API_URL: config.agentpayApiUrl || "https://api-production-4f36.up.railway.app",
+        AGENTPAY_API_KEY: config.agentpayApiKey
+      }
+    })

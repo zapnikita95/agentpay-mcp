@@ -1,0 +1,16 @@
+[project]
+name = "agentpay-mcp"
+version = "0.2.0"
+description = "AgentPay MCP stdio client (stdlib)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+
+[project.scripts]
+agentpay-mcp = "agentpay_mcp:main"
+
+[tool.setuptools]
+py-modules = ["agentpay_mcp"]
+
+[tool.setuptools.package-dir]
+"" = "python"

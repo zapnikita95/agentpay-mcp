@@ -1,0 +1,48 @@
+{
+  "name": "agentpay-mcp",
+  "version": "0.2.0",
+  "description": "AgentPay MCP: controlled budget for an AI agent. Spend in allowlisted stores. No card in the model.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "bin": {
+    "agentpay-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "server.json",
+    "mcp.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zapnikita95/agentpay-mcp.git"
+  },
+  "homepage": "https://github.com/zapnikita95/agentpay-mcp",
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "agentpay",
+    "cursor",
+    "claude",
+    "agent-commerce"
+  ],
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import tsx --test src/catalog.test.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
