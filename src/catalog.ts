@@ -100,7 +100,7 @@ export const MCP_TOOLS: McpToolDef[] = [
   {
     name: "create_purchase",
     description:
-      "Place an order in an allowlisted store using AgentPay coins. Server enforces allowlist, limits, HITL confirmation, and freeze. Call when the user clearly wants to buy («купи», «оформи», «потрать»). Always send idempotency_key (unique per attempt), items[], store_id, amount, and explanation.summary. Never ask the user to paste a bank card into chat. If confirmation is required, tell the user to approve in AgentPay / Telegram.",
+      "Place an order in an allowlisted store using AgentPay coins. Server enforces allowlist, limits, HITL confirmation, and freeze. Call when the user clearly wants to buy («купи», «оформи», «потрать»). Always send idempotency_key (unique per attempt), items[], store_id, amount, and explanation.summary. Response includes paid and payment.status — if pending or failed, do not retry payment. Auto-topup is max 3 per day. Never ask the user to paste a bank card into chat. If confirmation is required, tell the user to approve in AgentPay / Telegram.",
     inputSchema: {
       type: "object",
       properties: {
@@ -141,11 +141,30 @@ export const MCP_TOOLS: McpToolDef[] = [
   {
     name: "get_purchase_status",
     description:
-      "Get purchase status by id (pending confirmation, submitted, fulfilled, rejected). Call after create_purchase or when the user asks «где заказ», «статус покупки».",
+      "Get purchase status by id. Returns paid and payment.status (succeeded/pending/failed). Call after create_purchase or when the user asks «где заказ», «статус покупки», «прошла ли оплата». If pending, wait. If failed, do not retry payment.",
     inputSchema: {
       type: "object",
       properties: { purchase_id: { type: "string" } },
       required: ["purchase_id"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "get_payment_status",
+    description:
+      "Check whether the last top-up/payment succeeded. Call after create_topup_intent or when the user asks «оплата прошла», «списали карту». Returns paid, payment.status, autoTopup remaining today (max 3 auto-topups). If pending or succeeded, do not create another payment.",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+  },
+  {
+    name: "create_topup_intent",
+    description:
+      "Ask the owner to top up coins via YooKassa or the cabinet. Call on INSUFFICIENT_FUNDS. Never take a card in chat. Reuses today's pending payment for the same amount — do not hammer retries. If get_payment_status is pending, wait.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        amountRub: { type: "number" },
+        needCoins: { type: "number" },
+      },
       additionalProperties: false,
     },
   },
@@ -219,6 +238,12 @@ export const MCP_TOOL_HTTP: Record<
   get_purchase_status: {
     method: "GET",
     path: (args) => `/agent/purchases/${args.purchase_id}`,
+  },
+  get_payment_status: { method: "GET", path: () => "/agent/payments" },
+  create_topup_intent: {
+    method: "POST",
+    path: () => "/agent/topup-intent",
+    body: (args) => ({ amountRub: args.amountRub, needCoins: args.needCoins }),
   },
   request_user_confirmation: {
     method: "POST",
