@@ -88,7 +88,7 @@ If npm or GitHub is slow in RF, use **C**. Host the cabinet/docs on a RU CDN (La
 
 ## Tools
 
-`verify_connection`, `get_balance`, `get_limits`, `get_spending_policy`, `list_allowed_stores`, `get_user_preferences`, `update_preference`, `search_products`, `get_product`, `create_purchase`, `get_purchase_status`, `request_user_confirmation`.
+`verify_connection`, `get_balance`, `get_limits`, `get_spending_policy`, `list_allowed_stores`, `get_user_preferences`, `update_preference`, `search_products`, `get_product`, `create_purchase`, `get_purchase_status`, `get_payment_status`, `create_topup_intent`, `request_user_confirmation`.
 
 Descriptions tell the model **when** to call each tool (including Russian phrases: купи, бюджет, заморозь).
 

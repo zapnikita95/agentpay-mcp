@@ -99,7 +99,7 @@ TOOLS = [
     },
     {
         "name": "get_purchase_status",
-        "description": "Purchase status. Call for «где заказ».",
+        "description": "Purchase status. Returns paid and payment.status. Call for «где заказ», «прошла ли оплата». Do not retry if pending/failed.",
         "inputSchema": {
             "type": "object",
             "properties": {"purchase_id": {"type": "string"}},
@@ -117,6 +117,22 @@ TOOLS = [
                 "amount": {"type": "number"},
             },
             "required": ["message"],
+        },
+    },
+    {
+        "name": "get_payment_status",
+        "description": "Whether the last payment/top-up succeeded. Call for «оплата прошла». If pending, do not create another payment. Auto-topup max 3/day.",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "create_topup_intent",
+        "description": "Ask the owner to top up coins. Never take a card in chat. Reuses today's pending payment — do not hammer retries.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "amountRub": {"type": "number"},
+                "needCoins": {"type": "number"},
+            },
         },
     },
 ]
@@ -184,6 +200,15 @@ def call_tool(name: str, args: dict) -> dict:
         )
     if name == "get_purchase_status":
         return _http("GET", f"/agent/purchases/{args.get('purchase_id')}")
+    if name == "get_payment_status":
+        return _http("GET", "/agent/payments")
+    if name == "create_topup_intent":
+        body = {}
+        if args.get("amountRub") is not None:
+            body["amountRub"] = args.get("amountRub")
+        if args.get("needCoins") is not None:
+            body["needCoins"] = args.get("needCoins")
+        return _http("POST", "/agent/topup-intent", body)
     if name == "request_user_confirmation":
         return _http(
             "POST",
