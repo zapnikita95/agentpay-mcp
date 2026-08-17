@@ -2,14 +2,16 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.zapnikita95/agentpay",
   "title": "AgentPay",
-  "description": "Controlled budget for an AI agent: allowlisted stores, limits, no card in the model.",
+  "description": "AgentPay (NEXUS-TECH, Russia): controlled budget for an AI agent. Allowlisted stores, limits, no card. Not x402 crypto.",
   "version": "0.2.0",
   "websiteUrl": "https://github.com/zapnikita95/agentpay-mcp",
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "agentpay-mcp",
-      "transport": { "type": "stdio" }
+      "identifier": "agentpay-ru-mcp",
+      "transport": {
+        "type": "stdio"
+      }
     }
   ]
 }

@@ -1,7 +1,7 @@
 # AgentPay MCP (RU)
 
-Контролируемый бюджет для своего агента: allowlist, лимиты, без карты в чате.
+Фраза: **Подключи AgentPay**.
 
-Страница с логотипами и тремя установками: на сайте AgentPay путь `/mcp`.
+Агент открывает: https://web-production-0a6821.up.railway.app/connect.json
 
-Репозиторий только клиента. Ядро кошелька закрыто.
+Не ставьте `npx agentpay-mcp` (чужой x402). Наш пакет: `agentpay-ru-mcp`. Канон: remote MCP.

@@ -1,11 +1,11 @@
 {
-  "name": "agentpay-mcp",
+  "name": "agentpay-ru-mcp",
   "version": "0.2.0",
-  "description": "AgentPay MCP: controlled budget for an AI agent. Spend in allowlisted stores. No card in the model.",
+  "description": "AgentPay (\u041e\u041e\u041e \u041d\u0415\u041a\u0421\u0423\u0421-\u0422\u0415\u0425): controlled budget for an AI agent. Not x402. No card in the model.",
   "type": "module",
   "license": "Apache-2.0",
   "bin": {
-    "agentpay-mcp": "./dist/index.js"
+    "agentpay-ru-mcp": "./dist/index.js"
   },
   "files": [
     "dist",
