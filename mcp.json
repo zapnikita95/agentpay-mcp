@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "agentpay": {
-      "url": "https://api-production-4f36.up.railway.app/mcp",
+      "url": "https://agentpay.shop/ap/mcp",
       "headers": {
         "Authorization": "Bearer ap_REPLACE_ME"
       }

@@ -11,7 +11,10 @@ test("every tool has a when-to-call description", () => {
 
 test("buy/budget RU triggers exist on spend tools", () => {
   const blob = MCP_TOOLS.map((t) => t.description).join("\n");
-  for (const w of ["купи", "бюджет", "лимит"]) {
+  for (const w of ["купи", "бюджет", "лимит", "тестовый", "почему фото", "сохрани адрес", "peek_stores", "прошлый раз"]) {
     assert.ok(blob.includes(w), w);
   }
+  assert.ok(MCP_TOOLS.some((t) => t.name === "list_purchases"));
+  const search = MCP_TOOLS.find((t) => t.name === "search_products");
+  assert.ok(search && !search.description.includes("«найди»"));
 });

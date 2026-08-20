@@ -1,17 +1,26 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.zapnikita95/agentpay",
-  "title": "AgentPay",
-  "description": "AgentPay (NEXUS-TECH, Russia): controlled budget for an AI agent. Allowlisted stores, limits, no card. Not x402 crypto.",
-  "version": "0.2.0",
-  "websiteUrl": "https://github.com/zapnikita95/agentpay-mcp",
-  "packages": [
+  "title": "AgentPay (Russia)",
+  "description": "RU specialty stores only. Controlled AI agent budget, allowlisted shops. Not x402.",
+  "version": "0.2.1",
+  "websiteUrl": "https://agentpay.shop/mcp",
+  "repository": {
+    "url": "https://github.com/zapnikita95/agentpay-mcp",
+    "source": "github"
+  },
+  "remotes": [
     {
-      "registryType": "npm",
-      "identifier": "agentpay-ru-mcp",
-      "transport": {
-        "type": "stdio"
-      }
+      "type": "streamable-http",
+      "url": "https://agentpay.shop/ap/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional. Bearer als_… after browser link, or ap_…. Without key: begin_agent_link / poll_agent_link still work.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
     }
   ]
 }

@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://smithery.ai/schema.json
 name: agentpay
-title: AgentPay
-description: Controlled budget for an AI agent in allowlisted stores. No card in the model.
+title: AgentPay (Russia)
+description: Russia only. Controlled AI agent budget in allowlisted specialty stores. Not x402/crypto.
 startCommand:
   type: stdio
   configSchema:
@@ -19,7 +19,7 @@ startCommand:
       command: "node",
       args: ["dist/index.js"],
       env: {
-        AGENTPAY_API_URL: config.agentpayApiUrl || "https://api-production-4f36.up.railway.app",
+        AGENTPAY_API_URL: config.agentpayApiUrl || "https://agentpay.shop/ap",
         AGENTPAY_API_KEY: config.agentpayApiKey
       }
     })
