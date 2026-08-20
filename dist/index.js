@@ -26,7 +26,7 @@ async function api(pathname, init) {
     }
     return data;
 }
-const server = new Server({ name: "agentpay", version: "0.2.0" }, { capabilities: { tools: {} } });
+const server = new Server({ name: "agentpay", version: "0.2.2" }, { capabilities: { tools: {} } });
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
     tools: MCP_TOOLS.map((t) => ({
         name: t.name,

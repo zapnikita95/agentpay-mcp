@@ -3,7 +3,7 @@
   "name": "io.github.zapnikita95/agentpay",
   "title": "AgentPay (Russia)",
   "description": "RU specialty stores only. Controlled AI agent budget, allowlisted shops. Not x402.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "websiteUrl": "https://agentpay.shop/mcp",
   "repository": {
     "url": "https://github.com/zapnikita95/agentpay-mcp",

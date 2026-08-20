@@ -4,6 +4,7 @@ export type McpToolDef = {
     description: string;
     inputSchema: Record<string, unknown>;
 };
+/** Keep in sync with packages/shared/src/mcp-tools.ts */
 export declare const MCP_TOOLS: McpToolDef[];
 export declare const MCP_TOOL_HTTP: Record<string, {
     method: "GET" | "POST";
